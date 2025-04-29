@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS</title>
+    <script>
+	window.onload = inicio;
+
+	function inicio() {
+	    let botao = document.getElementById('botao');
+        botao.addEventListener('click', soma);
+	}
+
+    function soma() {
+        let saida = document.getElementById('saida');
+        let x = 7;
+        let y = 3;
+        saida.innerHTML = x + y;
+    }
+
+    /* sub */
+    </script>
+</head>
+<body>
+    <p id="saida">JS esperando evento</p>
+    <input type="button" value="+" id="botao">
+</body>
+</html>

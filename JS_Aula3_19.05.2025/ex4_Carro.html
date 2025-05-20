@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro e Controle de Carro</title>
+    <script>
+        let carro = {
+            nome: "",
+            ano: 0,
+            cor: "",
+            velocidade: 0
+        };
+
+        function cadastrarCarro() {
+            carro.nome = document.getElementById("nome").value;
+            carro.ano = parseInt(document.getElementById("ano").value);
+            carro.cor = document.getElementById("cor").value;
+
+            document.getElementById("infoCarro").textContent = `Carro cadastrado: Nome = ${carro.nome}, Ano = ${carro.ano}, Cor = ${carro.cor}, Velocidade = ${carro.velocidade}`;
+            atualizarVelocidade();
+        }
+
+        function acelerarCarro() {
+            carro.velocidade += 3;
+            atualizarVelocidade();
+        }
+
+        function frearCarro() {
+            carro.velocidade -= 2;
+            if (carro.velocidade < 0) {
+                carro.velocidade = 0;
+            }
+            atualizarVelocidade();
+        }
+
+        function atualizarVelocidade() {
+            document.getElementById("velocidadeAtual").textContent = `Velocidade atual: ${carro.velocidade}`;
+        }
+    </script>
+</head>
+<body>
+    <h1>Cadastro e Controle de Carro</h1>
+
+    <label for="nome">Nome do Carro:</label>
+    <input type="text" id="nome"><br><br>
+
+    <label for="ano">Ano do Carro:</label>
+    <input type="number" id="ano"><br><br>
+
+    <label for="cor">Cor do Carro:</label>
+    <input type="text" id="cor"><br><br>
+
+    <button onclick="cadastrarCarro()">Cadastrar Carro</button><br><br>
+
+    <p id="infoCarro"></p>
+    <p id="velocidadeAtual">Velocidade atual: 0</p><br>
+
+    <button onclick="acelerarCarro()">Acelerar</button>
+    <button onclick="frearCarro()">Frear</button>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texto</title>
+    <script>
+       function limparTexto() {
+            document.getElementById("entrada").value = "";
+            document.getElementById("saida").textContent = "";
+        }
+
+        function mostrarTexto() {
+            let textoDigitado = document.getElementById("entrada").value;
+            document.getElementById("saida").textContent = textoDigitado;
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("limpar").addEventListener("click", limparTexto);
+            document.getElementById("mostrar").addEventListener("click", mostrarTexto);
+        });
+    </script>
+</head>
+<body>
+    <input type="text" id="entrada"><br>
+    <input type="button" id="limpar" value="Limpar">
+    <input type="button" id="mostrar" value="Mostrar"><br>
+    <p id="saida"></p>
+</body>
+</html>

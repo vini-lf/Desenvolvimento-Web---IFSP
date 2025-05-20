@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Juros Simples</title>
+    <script>
+        function calcularRendimento() {
+            let saldoInicialInput = document.getElementById("saldo");
+            let taxaJurosInput = document.getElementById("taxa");
+            let mes1Paragrafo = document.getElementById("mes1");
+            let mes2Paragrafo = document.getElementById("mes2");
+            let mes3Paragrafo = document.getElementById("mes3");
+
+            let saldoInicialTexto = saldoInicialInput.value;
+            let taxaJurosTexto = taxaJurosInput.value;
+
+            let saldoInicial = parseFloat(saldoInicialTexto.replace(",", "."));
+            let taxaJurosMensal = parseFloat(taxaJurosTexto.replace(",", ".")) / 100;
+
+            if (isNaN(saldoInicial) || isNaN(taxaJurosMensal)) {
+                mes1Paragrafo.textContent = "Por favor, digite valores numéricos válidos.";
+                mes2Paragrafo.textContent = "";
+                mes3Paragrafo.textContent = "";
+                return;
+            }
+
+            let rendimentoMes1 = saldoInicial * taxaJurosMensal * 1;
+            let saldoMes1 = saldoInicial + rendimentoMes1;
+
+            let rendimentoMes2 = saldoInicial * taxaJurosMensal * 2;
+            let saldoMes2 = saldoInicial + rendimentoMes2;
+
+            let rendimentoMes3 = saldoInicial * taxaJurosMensal * 3;
+            let saldoMes3 = saldoInicial + rendimentoMes3;
+
+            mes1Paragrafo.textContent = `Após 1 mês: Rendimento = R$ ${rendimentoMes1.toFixed(2)}, Saldo Total = R$ ${saldoMes1.toFixed(2)}`;
+            mes2Paragrafo.textContent = `Após 2 meses: Rendimento = R$ ${rendimentoMes2.toFixed(2)}, Saldo Total = R$ ${saldoMes2.toFixed(2)}`;
+            mes3Paragrafo.textContent = `Após 3 meses: Rendimento = R$ ${rendimentoMes3.toFixed(2)}, Saldo Total = R$ ${saldoMes3.toFixed(2)}`;
+        }
+    </script>
+</head>
+<body>
+    <h1>Calculadora de Juros Simples</h1>
+
+    <label for="saldo">Saldo Inicial (R$):</label>
+    <input type="text" id="saldo"><br><br>
+
+    <label for="taxa">Taxa de Juros Mensal (%):</label>
+    <input type="text" id="taxa"><br><br>
+
+    <button onclick="calcularRendimento()">Calcular Rendimento</button>
+
+    <h3>Resultados:</h3>
+    <p id="mes1"></p>
+    <p id="mes2"></p>
+    <p id="mes3"></p>
+</body>
+</html>

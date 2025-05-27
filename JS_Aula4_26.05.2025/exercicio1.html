@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Aprovação</title>
+    <script>
+	window.onload = verificarNota;
+
+	function verificarNota() {
+        let campoNome = document.getElementById('nome');
+        let nomeDigitado = campoNome.value;
+
+        let campoNota = document.getElementById('nota');
+        let notaDigitada = campoNota.value;
+
+        let nota = parseFloat(notaDigitada);
+
+        let pSaida = document.getElementById('saida');
+
+        if(nota>=6 && nota<=10){
+            pSaida.textContent = nomeDigitado + ", Aprovado!"
+
+        } else if (nota>=0 && nota<=6){
+            pSaida.textContent = nomeDigitado + ", Reprovado!"
+
+        } else {
+            pSaida.textContent = "Nota inválida."
+
+        }
+	}
+
+    </script>
+</head>
+<body>
+    <label for="">Digite seu nome:</label> <br>
+    <input type="text" id="nome"> <br><br>
+
+    <label for="">Digite sua nota:</label> <br>
+    <input type="text" id="nota"> <br><br>
+
+    <input type="button" id="botao" value="Verificar"> <br><br>
+
+    <input type="text" id="saida">
+</body>
+</html>

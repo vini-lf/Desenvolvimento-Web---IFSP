@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        
+        function informações(){
+            let nome = document.getElementById('nome');
+            let nomeDigitado = nome.value;
+
+            let salario = document.getElementById('salario');
+            let salarioDigitado = parseFloat(salario.value);
+
+            let vendas = document.getElementById('vendasDia');
+            let vendasDia = parseFloat(vendas.value);
+
+            for(let comissao = salarioDigitado; comissao <=5; comissao++){
+                comissao = salarioDigitado + (vendasDia*0.05)
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <label for="">Digite o nome do Funcionário:</label> <br>
+    <input type="text" id="nome"> <br><br>
+
+    <label for=""> Digite o salário dele:</label> <br>
+    <input type="text" id="salario"> <br><br>
+
+    <label for="">Digite quantas vendas ele teve no dia:</label><br>
+    <input type="text" id="vendasDia"><br><br>
+
+    <input type="button" id="">
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World!</title>
+    <script>
+        window.onload = inicio;
+
+        function inicio() {
+            let botao = document.getElementById('botao');
+            botao.addEventListener('click', mostra);
+        }
+
+        function mostra() {
+            let txtEntrada = document.getElementById('entrada');
+            let nome = txtEntrada.value;
+
+            let txtNota = document.getElementById('nota');
+            let nota = txtNota.value;
+            // "3,5" = "3.5"
+            nota = nota.replace(",", ".");
+            let valor = parseFloat(nota);
+
+            // obter saida:
+            let txtSaida = document.getElementById('saida');
+            // Not a Number = NaN
+
+            // alterar saida:
+            if( isNaN(valor) ) {
+                txtSaida.value = "Digite um número na nota!";
+            } else {
+                if( valor > 6 ) {
+                txtSaida.value = nome + ", aprovado!";
+                } else {
+                    txtSaida.value = nome + ", reprovado!";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <label for="entrada">Nome:</label>
+    <input type="text" id="entrada"><br>
+    <label for="nota">Nota:</label>
+    <input type="text" id="nota"><br>
+    <input type="button" id="botao" value="Enviar"><br>
+    <label for="saida">Resultado:</label>
+    <input type="text" id="saida"><br>
+</body>
+</html>

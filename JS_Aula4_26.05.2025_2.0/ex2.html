@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World!</title>
+    <script>
+        window.onload = inicio;
+
+        function inicio() {
+            let botao = document.getElementById('botao');
+            botao.addEventListener('click', mostra);
+        }
+
+        function mostra() {
+            let txtNome = document.getElementById('nome');
+            let nome = txtNome.value;
+
+            let txtSalario = document.getElementById('salario');
+            // 1800,00
+            let valor = txtSalario.value;
+            // "3,5" = "3.5"
+            valor = valor.replace(",", ".");
+            let salario = parseFloat(valor);
+
+            let txtVendas = document.getElementById('vendas');
+            // 1800,00
+            valor = txtVendas.value;
+            // "3,5" = "3.5"
+            valor = valor.replace(",", ".");
+            let vendas = parseFloat(valor);
+
+            // obter saida:
+            let txtSaida = document.getElementById('saida');
+            // Not a Number = NaN
+
+
+            for(var i = 1; i <= 5; i++) {
+                let final = salario + ((i * vendas * 5) / 100);
+                txtSaida.innerHTML += `Total ${i} dias: ${final} <br>`;
+            }
+            
+        }
+    </script>
+</head>
+<body>
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome"><br>
+    <label for="salario">Salário:</label>
+    <input type="text" id="salario"><br>
+    <label for="">Vendas do dia</label>
+    <input type="text" id="vendas"><br>
+    <input type="button" id="botao" value="Calcular"><br>
+    <p id="saida"></p>
+</body>
+</html>

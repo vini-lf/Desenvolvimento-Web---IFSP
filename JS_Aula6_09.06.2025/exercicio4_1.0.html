@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS</title>
+    <script>
+        window.onload = inicio;
+        let contador = 1;
+
+        function inicio() {
+            let botao = document.getElementById('btnAdiciona');
+            botao.addEventListener('click', adiciona);
+        }
+        function adiciona() {
+            let campoNome = document.getElementById('nome');
+            let nomeAtividade = campoNome.value;
+
+            let atividades = document.getElementById('atividades');
+            atividades.innerHTML += `<input type="checkbox" id="c${contador}">`;
+            atividades.innerHTML += `<label id="labelc${contador}" for="c${contador}"> ${nomeAtividade}</label>`;
+            atividades.innerHTML += '<br>';
+            contador++;
+
+            let ultima = document.getElementById('c1');
+            ultima.addEventListener('click', encerrou);
+         }
+
+         function encerrou(evento) {
+            
+            let clicado = evento.srcElement.id;
+            let labelDoClicado = document.getElementById('label'+clicado);
+            let texto = labelDoClicado.innerHTML;
+            console.log(texto);
+
+            let agora = new Date();
+            let textoData = `${agora.getDate()}/${agora.getMonth()+1}/${agora.getFullYear()} ${agora.getHours()}:${agora.getMinutes()}`
+
+            let tabela = document.getElementById('encerradas');
+            tabela.innerHTML += `<tr><td>Nome</td><td>${textoData}</td></tr>`;
+         }
+    </script>
+</head>
+<body>
+    <label for="nome">Atividade:</label>
+    <input type="text" id="nome">
+    <input type="button" id="btnAdiciona" value="Adicionar"><br>
+
+    <div id="atividades"></div>
+
+    <table id="encerradas">
+        <tr><th>Nome</th><th>Data encerramento</th></tr>
+    </table>
+</body>
+</html>  

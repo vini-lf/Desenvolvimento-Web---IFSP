@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Simples de Tarefas</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        input[type="text"], input[type="button"] { padding: 5px; margin-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        .tarefa-item { margin-bottom: 5px; }
+    </style>
+    <script>
+        window.onload = iniciar;
+        let contadorId = 1;
+
+        function iniciar() {
+            document.getElementById('btnAdicionar').addEventListener('click', adicionarTarefa);
+        }
+
+        function adicionarTarefa() {
+            let nomeTarefa = document.getElementById('nomeTarefa').value.trim();
+
+            if (nomeTarefa === "") {
+                alert("Por favor, digite o nome da tarefa.");
+                return;
+            }
+
+            let divAtividades = document.getElementById('atividadesPendentes');
+            let novoId = `tarefa-${contadorId++}`;
+
+            let itemDiv = document.createElement('div');
+            itemDiv.className = 'tarefa-item';
+            itemDiv.id = `item-${novoId}`;
+
+            let checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = novoId;
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    marcarComoEncerrada(this.id, nomeTarefa, itemDiv);
+                }
+            });
+
+            let label = document.createElement('label');
+            label.htmlFor = novoId;
+            label.textContent = nomeTarefa;
+
+            itemDiv.appendChild(checkbox);
+            itemDiv.appendChild(label);
+            divAtividades.appendChild(itemDiv);
+
+            document.getElementById('nomeTarefa').value = '';
+            document.getElementById('nomeTarefa').focus();
+        }
+
+        function marcarComoEncerrada(checkboxId, nomeTarefa, itemDivPendente) {
+            let dataAtual = new Date();
+            let dataFormatada = `${dataAtual.toLocaleDateString()} ${dataAtual.toLocaleTimeString()}`;
+
+            itemDivPendente.remove();
+
+            let tabelaCorpo = document.getElementById('tabelaEncerradas').getElementsByTagName('tbody')[0];
+            let novaLinha = tabelaCorpo.insertRow();
+
+            let celulaNome = novaLinha.insertCell(0);
+            let celulaData = novaLinha.insertCell(1);
+
+            celulaNome.textContent = nomeTarefa;
+            celulaData.textContent = dataFormatada;
+        }
+    </script>
+</head>
+<body>
+    <h1>Minhas Tarefas</h1>
+
+    <label for="nomeTarefa">Tarefa:</label>
+    <input type="text" id="nomeTarefa" placeholder="Ex: Comprar pão">
+    <input type="button" id="btnAdicionar" value="Adicionar"><br>
+
+    ---
+
+    <h2>Tarefas Pendentes</h2>
+    <div id="atividadesPendentes">
+        </div>
+
+    ---
+
+    <h2>Tarefas Encerradas</h2>
+    <table id="tabelaEncerradas">
+        <thead>
+            <tr>
+                <th>Tarefa</th>
+                <th>Encerramento</th>
+            </tr>
+        </thead>
+        <tbody>
+            </tbody>
+    </table>
+
+</body>
+</html>
